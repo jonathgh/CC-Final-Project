@@ -1,6 +1,8 @@
+//let glsl = require('glslify');
+
 // SCENE
 let scene = new THREE.Scene();
-scene.background = new THREE.Color('#3f41e2');
+scene.background = new THREE.Color('#000'); //#5a1ee2
 
 // CAMERA
 let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -33,7 +35,37 @@ mesh.castShadow = true;
 // add the mesh to the scene
 scene.add(mesh);
 
+//////////////////////////////https://stackoverflow.com/questions/69599595/threejs-rotating-starfield/////////////
+
+function addStar () {
+    const geometry = new THREE.SphereGeometry(0.25, 24, 24);
+    const material = new THREE.MeshStandardMaterial({
+      color: 0xffffff,
+      emissive: 0xffffff,
+      emissiveIntensity: 1,
+      roughness: 0,
+      metalness: 0.5
+    });
+    const star = new THREE.Mesh(geometry, material);
+
+    const [x, y, z] = Array(3)
+      .fill(undefined)
+      .map(() => THREE.MathUtils.randFloatSpread(1000));
+
+    star.position.set(x, y, z);
+    scene.add(star);
+  };
+
+  for(let i = 0; i < 1000; i++){
+      addStar();
+  };
+
+////////////////////////////////End Credit////////////////////
+
+
 //credit: https://tympanus.net/codrops/2019/01/17/interactive-particles-with-three-js/
+
+
 
 // //particles are a simple quad, formed by 4 vertices and 2 triangles.
 // const geometry = new THREE.InstancedBufferGeometry();
@@ -87,8 +119,8 @@ scene.add(mesh);
 
 // const material = new THREE.RawShaderMaterial({
 // 	uniforms,
-// 	vertexShader: glslify(require('../../../shaders/particle.vert')),
-// 	fragmentShader: glslify(require('../../../shaders/particle.frag')),
+// 	vertexShader: document.getElementById( 'vertexShader' ).textContent, // vertexShader: glslify(require('../shaders/particles.vert')),
+// 	fragmentShader: document.getElementById( 'fragmentShader' ).textContent, // fragmentShader: glslify(require('../shaders/particle.frag')),
 // 	depthTest: false,
 // 	transparent: true
 // });

@@ -2,4 +2,46 @@ html,
 body {
     margin: 0;
     padding: 0;
+    height: 100%;
 }
+
+#container {
+    position: absolute;
+    /* height: 100%; */
+    top: 0%;
+    left: 0%;
+    right: 0%;
+    bottom: 0%;
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+}
+
+#container canvas,
+#overlay {
+    position: absolute;
+    font-size: xx-large;
+    text-align: center;
+    font-family: 'Jost', sans-serif;
+    font-kerning: normal;
+    justify-self: center;
+    align-self: center;
+    grid-row: 1 / 6;
+    grid-column: 1/ 6;
+    letter-spacing: 100px;
+    text-shadow: 0 0 10px rgb(0, 217, 255), 0 0 20px rgb(0, 162, 255); 
+    /*, 0 0 30px #00d9ff, 0 0 40px #00c3ff, 0 0 50px #00b4eb, 0 0 60px #00bcf5, 0 0 70px #00a6e7; */
+    }
+
+    #ccanvas {
+        position: absolute;
+        grid-row: 1 / 6;
+        grid-column: 1/ 6;
+        width: 100%;
+        margin: 0px;
+        border: 0;
+
+    
+    }
+
+

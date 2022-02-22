@@ -1,0 +1,26 @@
+{
+  "name": "cc-final-project",
+  "version": "1.0.0",
+  "description": "final coding project for CC1 at Filmuni",
+  "main": "./threejs/js/scene.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathgh/CC-Final-Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonathgh/CC-Final-Project/issues"
+  },
+  "homepage": "https://github.com/jonathgh/CC-Final-Project#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "express-handlebars": "^6.0.2",
+    "glslify": "^7.1.1",
+    "nodemon": "^2.0.15",
+    "three": "^0.137.5"
+  }
+}

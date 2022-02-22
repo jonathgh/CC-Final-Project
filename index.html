@@ -17,10 +17,29 @@
     <!-- dat.GUI ../lib/dat.gui.min.js -->
     <script src="./threejs/lib/dat.gui.min.js"></script>
 
+    <!-- Vertex shader -->
+    <script src="./threejs/shaders/particles.vert" id="vertexShader"></script>
+
+    <!-- Fragment shader -->
+    <script src="./threejs/shaders/particles.frag" id="fragmentShader"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100&display=swap" rel="stylesheet"> 
+
 
 </head>
 
 <body>
+    
+    <div id="container">
+        <canvas id="canvas"></canvas>
+        <div id="overlay">
+            <h1>Jonathan Ho</h1>
+            <p1>Subheading</p1>
+        </div>
+    </div>
+
     <script src="./threejs/js/scene.js"></script>
 </body>
 
