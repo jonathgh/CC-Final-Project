@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Three js workshop</title>
 
-    <link rel="stylesheet" type="text/css" href="./threejs/css/style.css">
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="./threejs/css/style.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/wvh2fzc.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
 
     <!-- Three.js ../lib/three.min.js -->
     <script src="./threejs/lib/three.min.js"></script>
@@ -23,24 +23,34 @@
     <!-- Fragment shader -->
     <script src="./threejs/shaders/particles.frag" id="fragmentShader"></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@100&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@100&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-
-</head>
-
-<body>
-    
+  <body>
     <div id="container">
         <canvas id="canvas"></canvas>
         <div id="overlay">
-            <h1>Jonathan Ho</h1>
-            <p1>Subheading</p1>
+            <div class="headingTitle">Jonathan Ho</div>
+            <div class="subheading">Subheading</div>
         </div>
+        
+      <footer id="footer">
+        <ul class="menu-items">
+          <li class="menu-item menu-work" data-link="work">work</li>
+          <li class="menu-item menu-prototypes" data-link="prototypes">prototypes</li>
+          <li class="menu-item menu-art" data-link="art">art</li>
+          <li class="menu-item menu-press" data-link="press">press</li>
+          <li class="menu-item menu-info" data-link="info">info</li>
+          <li class="menu-item menu-reel" data-link="reel">reel</li>
+        </ul>
+      </footer>
     </div>
 
     <script src="./threejs/js/scene.js"></script>
-</body>
-
+  </body>
 </html>

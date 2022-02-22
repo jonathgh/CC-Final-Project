@@ -38,10 +38,10 @@ function onPointerMove( event ) {
 let controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 // GEOMETRY
-// ICOSAHEDRON
-let icosaGeometry = new THREE.SphereGeometry(1.5, 10);
-let icosaMaterial = new THREE.MeshPhongMaterial({ color: 0x1100, roughness: 0.2 });
-let mesh = new THREE.Mesh(icosaGeometry, icosaMaterial);
+// sphereHEDRON
+let sphereGeometry = new THREE.SphereGeometry(3, 20);
+let sphereMaterial = new THREE.MeshPhongMaterial({ color: 0x1100, shininess: 0.2 });
+let mesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
 mesh.castShadow = true;
 // add the mesh to the scene
 scene.add(mesh);
@@ -146,8 +146,9 @@ let ambientLight = new THREE.AmbientLight(0xffffff, 0.8); // (color, intensity)
 scene.add(ambientLight);
 
 // POINTLIGHT
-let pointLight = new THREE.PointLight(0xc9efff, 0.8);
-pointLight.position.set(0, 4, 2);
+let pointLight = new THREE.PointLight(0xc9efff, 5.0);
+pointLight.position.set(0, 5, 2);
+
 // shadow settings
 pointLight.castShadow = true;
 pointLight.shadow.mapSize.width = 1024;
