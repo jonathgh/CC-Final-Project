@@ -141,9 +141,9 @@ const material = new THREE.RawShaderMaterial({
 
 // LIGHTING
 // AMBIENT
-let ambientLight = new THREE.AmbientLight(0xffffff, 0.8); // (color, intensity)
-// add the ambient light to the scene
-scene.add(ambientLight);
+// let ambientLight = new THREE.AmbientLight(0xffffff, 0.8); // (color, intensity)
+// // add the ambient light to the scene
+// scene.add(ambientLight);
 
 // POINTLIGHT
 let pointLight = new THREE.PointLight(0xc9efff, 5.0);
