@@ -65,29 +65,22 @@ body {
 }
 
 .menu-items {
-    /* position: absolute;
-    width: 100%;
-    position: fixed;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-    bottom: 15vh;
-    padding-right: 4vw;
-    padding-left: 4vw;
-    letter-spacing: 0.2vw;
-    display: grid, -moz-inline-grid; */
-
     display: inline-block;
     cursor: pointer;
-    /* color: white; */
     text-transform: uppercase;
     letter-spacing: 0.2vw;
     text-indent: .2vw;
     font-size: 1vw;
-    /* opacity: .5; */
-    padding-right: 4vw;
-    padding-left: 4vw;
     user-select: none;
     list-style-type: none;
     font-weight: 100;
+}
+
+.disable-select {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Old version of Firefox */
+    -ms-user-select: none; /* Internet Explorer or Edge */
+    user-select: none; /* All modern browsers */
 }
