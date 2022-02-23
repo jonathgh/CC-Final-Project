@@ -1,5 +1,5 @@
-import scatterVert from "../shaders/scatter-Vert.js";
-import scatterFrag from "../shaders/scatter-Frag.js";
+import scatterVert from "../shaders/scatter-vert.js";
+import scatterFrag from "../shaders/scatter-frag.js";
 
 function main() {
     const canvas = document.querySelector('#c');

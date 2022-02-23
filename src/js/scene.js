@@ -4,8 +4,8 @@ let uniforms;
 let clock = new THREE.Clock();
 
 
-import planetVert from "../shaders/planet-Vert.js";
-import planetFrag from "../shaders/planet-Frag.js";
+import planetVert from "../shaders/planet-vert.js";
+import planetFrag from "../shaders/planet-frag.js";
 
 uniforms = {
   u_time: { type: "f", value: 1.0 },
