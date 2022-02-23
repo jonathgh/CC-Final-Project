@@ -1,4 +1,5 @@
 const scatterFrag = /*glsl*/  `
+precision highp float;
 #include <common>
  
 uniform vec3 iResolution;
