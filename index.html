@@ -4,34 +4,32 @@
     <meta charset="UTF-8" />
     <title>Three js workshop</title>
 
-    <link rel="stylesheet" type="text/css" href="./threejs/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="./src/css/style.css" />
     <link rel="stylesheet" href="https://use.typekit.net/wvh2fzc.css" />
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
 
     <!-- Three.js ../lib/three.min.js -->
-    <script src="./threejs/lib/three.min.js"></script>
+    <script src="./src/lib/three.min.js"></script>
 
     <!-- Orbit Controls ../lib/OrbitControls.js-->
-    <script src="./threejs/lib/OrbitControls.js"></script>
+    <script src="./src/lib/OrbitControls.js"></script>
 
     <!-- dat.GUI ../lib/dat.gui.min.js -->
-    <script src="./threejs/lib/dat.gui.min.js"></script>
+    <script src="./src/lib/dat.gui.min.js"></script>
 
-    <!-- Vertex shader -->
-    <!-- <script src="./threejs/shaders/particles.vert" id="vertexShader"></script> -->
+    <!-- Webpack for Compiling Shaders
+    <script src="https://unpkg.com/lodash@4.17.20"></script> -->
 
-    <!-- Fragment shader -->
-    <!-- <script src="./threejs/shaders/particles.frag" id="fragmentShader"></script> -->
+    <!-- Planet Vertex shader -->
+    <script type="module" src="./src/shaders/planet-Vert.js" id="planetVertexShader" ></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Jost:wght@100&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Planet Fragment shader -->
+    <script type="module" src="./src/shaders/planet-Frag.js" id="planetFragmentShader" ></script>
+
   </head>
 
   <body>
+
     <div id="container" class="disable-select">
         <canvas id="canvas"></canvas>
         <div id="overlay">
@@ -52,6 +50,6 @@
       
     </div>
 
-    <script src="./threejs/js/scene.js"></script>
+    <script type="module" src="./src/js/scene.js"></script>
   </body>
 </html>
