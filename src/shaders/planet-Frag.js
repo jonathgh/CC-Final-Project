@@ -4,22 +4,6 @@ precision mediump float;
 
 uniform vec2 iResolution;
 
-// ERROR: 0:247: 'fragCoord' : undeclared identifier
-// ERROR: 0:247: 'xy' :  field selection requires structure, vector, or interface block on left hand side
-// ERROR: 0:247: 'ray_dir' : no matching overloaded function found
-// ERROR: 0:247: '=' : dimension mismatch
-// ERROR: 0:247: '=' : cannot convert from 'const mediump float' to 'mediump 3-component vector of float'
-// ERROR: 0:253: 'iTime' : undeclared identifier
-// ERROR: 0:262: 'gl_fragColor' : undeclared identifier
-// ERROR: 0:262: 'assign' : l-value required (can't modify a const)
-// ERROR: 0:262: '=' : dimension mismatch
-// ERROR: 0:262: 'assign' : cannot convert from 'const 4-component vector of float' to 'const highp float'
-// ERROR: 0:271: 'gl_fragColor' : undeclared identifier
-// ERROR: 0:271: 'assign' : l-value required (can't modify a const)
-// ERROR: 0:271: '=' : dimension mismatch
-// ERROR: 0:271: 'assign' : cannot convert from 'mediump 4-component vector of float' to 'const highp float'
-// 
-
 // Written by GLtracy
 
 // math const
