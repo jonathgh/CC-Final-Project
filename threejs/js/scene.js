@@ -1,6 +1,17 @@
 //let glsl = require('glslify');
 const pointer = new THREE.Vector2();
 
+const vertexShader = /*glsl*/
+`void main() {
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}
+`;
+
+const fragmentShader = /*glsl*/
+`void main() {
+  gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+}
+`;
 
 // SCENE
 let scene = new THREE.Scene();
@@ -38,9 +49,20 @@ function onPointerMove( event ) {
 let controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 // GEOMETRY
-// sphereHEDRON
-let sphereGeometry = new THREE.SphereGeometry(3, 20);
-let sphereMaterial = new THREE.MeshPhongMaterial({ color: 0x1100, shininess: 0.2 });
+// sphere
+let sphereGeometry = new THREE.SphereGeometry(3, 50);
+const sphereMaterial = new THREE.ShaderMaterial({
+  fragmentShader: fragmentShader,
+  vertexShader: vertexShader
+});
+// let sphereMaterial = new THREE.MeshStandardMaterial({
+//   color: 0xffffff,
+//   emissive: 0xffffff,
+//   emissiveIntensity: 0.0,
+//   roughness: 0.5,
+//   metalness: 0.0
+// });
+//new THREE.MeshPhongMaterial({ color: 0x1100, shininess: 0.2 });
 let mesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
 mesh.castShadow = true;
 // add the mesh to the scene
@@ -52,7 +74,7 @@ scene.add(mesh);
 function addStar () {
     const geometry = new THREE.SphereGeometry(0.25, 24, 24);
     const material = new THREE.MeshStandardMaterial({
-      color: 0xffffff,
+      color:  0xffffff,
       emissive: 0xffffff,
       emissiveIntensity: 1,
       roughness: 0,
@@ -129,10 +151,10 @@ const uniforms = {
 	uTouch: { value: null }
 };
 
-const material = new THREE.RawShaderMaterial({
+const material = new THREE.ShaderMaterial({
 	uniforms,
-	vertexShader: document.getElementById( 'vertexShader' ).textContent, // vertexShader: glslify(require('../shaders/particles.vert')),
-	fragmentShader: document.getElementById( 'fragmentShader' ).textContent, // fragmentShader: glslify(require('../shaders/particle.frag')),
+	vertexShader: vertexShader,  //document.getElementById( 'vertexShader' ).textContent, // vertexShader: glslify(require('../shaders/particles.vert')),
+	fragmentShader: fragmentShader, //document.getElementById( 'fragmentShader' ).textContent, // fragmentShader: glslify(require('../shaders/particle.frag')),
 	depthTest: false,
 	transparent: true
 });

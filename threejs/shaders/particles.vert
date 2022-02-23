@@ -1,7 +1,10 @@
+// precision mediump float;
+
 // particle.vert
-precision mediump float;
 
-
+void main() {
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}
 
 // void main() {
 // 	// displacement
@@ -19,16 +22,16 @@ precision mediump float;
 // 	// (...)
 // }
 
-attribute float scale;
+// attribute float scale;
 
 
 
-void main() {
+// void main() {
 
-	vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+// 	vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
 
-	gl_PointSize = scale * ( 300.0 / - mvPosition.z );
+// 	gl_PointSize = scale * ( 300.0 / - mvPosition.z );
 
-	gl_Position = projectionMatrix * mvPosition;
+// 	gl_Position = projectionMatrix * mvPosition;
 
-}
+// }
