@@ -38,13 +38,13 @@ function main() {
   let controls = new THREE.OrbitControls(camera, renderer.domElement);
 
   //grid helper
-  const size = 10;
-  const divisions = 10;
-  const gridHelper = new THREE.GridHelper(size, divisions);
-  scene.add(gridHelper);
+  // const size = 10;
+  // const divisions = 10;
+  // const gridHelper = new THREE.GridHelper(size, divisions);
+  // scene.add(gridHelper);
 
   //add plane to project scatter shader
-  const plane = new THREE.PlaneGeometry(2, 2);
+  const plane = new THREE.PlaneGeometry(2,2);
   const material = new THREE.ShaderMaterial({
     fragmentShader: scatterFrag,
     uniforms,
@@ -52,45 +52,30 @@ function main() {
   scene.add(new THREE.Mesh(plane, material));
 
   // resize canvas if necessary
-  window.addEventListener('resize', () => {
+  window.addEventListener("resize", () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     res.set(window.innerHeight, window.innerWidth, 1.0);
-});
-
-
-
-  // function resizeRendererToDisplaySize(renderer) {
-  //   const canvas = renderer.domElement;
-  //   const width = canvasW;
-  //   const height = canvasH;
-  //   const needResize = canvas.width !== width || canvas.height !== height;
-  //   if (needResize) {
-  //     renderer.setSize(width, height, false);
-  //   }
-  //   return needResize;
-  // }
+  });
 
   //animate scatter over time
   function render(time) {
-    
     time *= 0.001; // convert to seconds
-    timeShift = 0;
 
     // resizeRendererToDisplaySize(renderer);
     controls.update();
     const canvas = renderer.domElement;
 
     //set uniforms for shader
-    uniforms.iResolution.value.set(canvas.width, canvas.height, 1);
+    uniforms.iResolution.value.set(canvas.width, canvas.height, 1.0);
     uniforms.iTime.value = time;
 
     renderer.render(scene, camera);
-
+    // plane.translate(0, 0, 0);
     requestAnimationFrame(render);
   }
-
+  
   requestAnimationFrame(render);
 }
 
@@ -107,7 +92,7 @@ function main() {
 //   // } else if (pointer.x < 0.3) {
 //   //   timeShift = 1.0 * pointer.x
 //   // }
-  
+
 // }
 
 main();
