@@ -1,8 +1,18 @@
 //let glsl = require('glslify');
 const pointer = new THREE.Vector2();
+let uniforms;
+let clock = new THREE.Clock();
+
 
 import planetVert from "../shaders/planet-Vert.js";
 import planetFrag from "../shaders/planet-Frag.js";
+
+uniforms = {
+  u_time: { type: "f", value: 1.0 },
+  u_resolution: { type: "v2", value: new THREE.Vector2() },
+  u_mouse: { type: "v2", value: new THREE.Vector2() }
+
+};
 
 // SCENE
 let scene = new THREE.Scene();
@@ -13,19 +23,37 @@ let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHei
 camera.position.z = 10;
 
 // RENDERER
+
+//credit: https://stackoverflow.com/questions/4037212/html-canvas-full-screen
+const canvas = document.querySelector('#c');
+canvas.width = document.body.clientWidth;
+canvas.height = document.body.clientHeight;
+let canvasW = canvas.width;
+let canvasH = canvas.height;
+//end credit
+
 let renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+const resolution = new THREE.Vector2(window.innerWidth, window.innerHeight);
 
 document.body.appendChild(renderer.domElement);
+
 
 // make sure the scene adjusts to the browser window size
 window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
+    uniforms.u_resolution.value.x = renderer.domElement.width;
+    uniforms.u_resolution.value.y = renderer.domElement.height;
+    const resize = () => {
+      pass.uniforms.iResolution.value.set(window.innerWidth, window.innerHeight);
+      };
 });
+
+
 
 document.addEventListener( 'mousemove', onPointerMove );
 
@@ -34,6 +62,11 @@ function onPointerMove( event ) {
     pointer.x = ( event.clientX / window.innerWidth );
     pointer.y = ( event.clientY / window.innerHeight );
 
+}
+
+document.onmousemove = function(e){
+  uniforms.u_mouse.value.x = e.pageX
+  uniforms.u_mouse.value.y = e.pageY
 }
 
 // CONTROLS FOR NAVIGATION
@@ -45,7 +78,11 @@ let sphereGeometry = new THREE.SphereGeometry(3, 50);
 const sphereMaterial = new THREE.ShaderMaterial({
   fragmentShader: planetFrag,
   vertexShader: planetVert,
-  lights: true
+  uniforms: {
+    tDiffuse: { type: 't', value: null },
+    iResolution: { type: 'v2', value: resolution },
+},
+  // lights: true
 });
 // let sphereMaterial = new THREE.MeshStandardMaterial({
 //   color: 0xffffff,
@@ -180,7 +217,8 @@ scene.add(pointLightHelper);
 
 // ANIMATE LOOP
 function animate() {
-    requestAnimationFrame(animate);
+  uniforms.u_time.value += clock.getDelta();  
+  requestAnimationFrame(animate);
     renderer.render(scene, camera);
     camera.lookAt(scene.position);
 

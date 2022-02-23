@@ -1,29 +1,16 @@
-const planetFrag = /*glsl */ `
-
-precision mediump float;
-
-uniform vec2 iResolution;
-
-// ERROR: 0:247: 'fragCoord' : undeclared identifier
-// ERROR: 0:247: 'xy' :  field selection requires structure, vector, or interface block on left hand side
-// ERROR: 0:247: 'ray_dir' : no matching overloaded function found
-// ERROR: 0:247: '=' : dimension mismatch
-// ERROR: 0:247: '=' : cannot convert from 'const mediump float' to 'mediump 3-component vector of float'
-// ERROR: 0:253: 'iTime' : undeclared identifier
-// ERROR: 0:262: 'gl_fragColor' : undeclared identifier
-// ERROR: 0:262: 'assign' : l-value required (can't modify a const)
-// ERROR: 0:262: '=' : dimension mismatch
-// ERROR: 0:262: 'assign' : cannot convert from 'const 4-component vector of float' to 'const highp float'
-// ERROR: 0:271: 'gl_fragColor' : undeclared identifier
-// ERROR: 0:271: 'assign' : l-value required (can't modify a const)
-// ERROR: 0:271: '=' : dimension mismatch
-// ERROR: 0:271: 'assign' : cannot convert from 'mediump 4-component vector of float' to 'const highp float'
-// 
+const scatterFrag = /*glsl*/  `
+#include <common>
+ 
+uniform vec3 iResolution;
+uniform float iTime;
+ 
+// By iq: https://www.shadertoy.com/user/iq  
+// license: Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License.
 
 // Written by GLtracy
 
 // math const
-const float PI = 3.14159265359;
+//const float PI = 3.14159265359;
 const float MAX = 10000.0;
 
 // ray intersects sphere
@@ -167,7 +154,7 @@ vec3 ray_dir( float fov, vec2 size, vec2 pos ) {
 	return normalize( vec3( xy, -z ) );
 }
 
-void mainImage() // out vec4 gl_fragColor, in vec2 gl_fragCoord 
+void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
 	// default ray dir
 	vec3 dir = ray_dir( 45.0, iResolution.xy, fragCoord.xy );
@@ -185,7 +172,7 @@ void mainImage() // out vec4 gl_fragColor, in vec2 gl_fragCoord
 			  
 	vec2 e = ray_vs_sphere( eye, dir, R );
 	if ( e.x > e.y ) {
-		gl_fragColor = vec4( 0.0, 0.0, 0.0, 1.0 );
+		fragColor = vec4( 0.0, 0.0, 0.0, 1.0 );
         return;
 	}
 	
@@ -194,12 +181,25 @@ void mainImage() // out vec4 gl_fragColor, in vec2 gl_fragCoord
 
 	vec3 I = in_scatter( eye, dir, e, l );
 	
-	gl_fragColor = vec4( pow( I, vec3( 1.0 / 2.2 ) ), 1.0 );
+	fragColor = vec4( pow( I, vec3( 1.0 / 2.2 ) ), 1.0 );
 }
 
-// void main() {
-//   gl_FragColor = vec4(0.1, 0.1, 0.1, 1.0);
+
+// void mainImage( out vec4 fragColor, in vec2 fragCoord )
+// {
+//     // Normalized pixel coordinates (from 0 to 1)
+//     vec2 uv = fragCoord/iResolution.xy;
+ 
+//     // Time varying pixel color
+//     vec3 col = 0.5 + 0.5*cos(iTime+uv.xyx+vec3(0,2,4));
+ 
+//     // Output to screen
+//     fragColor = vec4(col,1.0);
 // }
+ 
+void main() {
+  mainImage(gl_FragColor, gl_FragCoord.xy);
+}
 `;
 
-export default planetFrag;
+export default scatterFrag;
